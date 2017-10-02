@@ -1,9 +1,22 @@
 const express = require('express');
 const router = express.Router();
 
-console.log("dog");
 router.get('/', (req, res) => {
-  res.send("hello");
+  res.render("index");
 });
+
+//room routes
+router.get('/room/new', (req, res) => {
+  res.render("new");
+});
+
+router.post('/room/create', (req, res) => {
+  console.log(req.body);
+});
+
+router.get('/room/edit', (req, res) =>{
+  res.render("edit");
+})
+
 
 module.exports = router;

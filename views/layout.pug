@@ -1,0 +1,27 @@
+html
+  head
+    title This is my Room template
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    link(rel="stylesheet" type="text/css" href="/dist/semantic.css")
+    link(rel="stylesheet" type="text/css" href="/css/main.css")
+  body
+    .ui.four.item.stackable.menu
+      a.item LOBBY
+      a.item#createRoom(href="/room/new") Create Room
+      a.item Sign-in
+      a.item.right Sign-up  
+      
+    .ui.icon.input
+      input(type="text" placeholder="search video....")
+      i.search.icon
+  
+        
+    block content
+        
+
+
+
+
+
+
+script(src="/javascripts/main.js")
