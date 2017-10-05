@@ -28,3 +28,7 @@ exports.createRoom = async (req, res) => {
 exports.showRoom = (req, res) => {
   res.send("show Room")
 }
+
+exports.searchRoom = (req, res) => {
+
+}
