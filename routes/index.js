@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { catchErrors } = require('../handlers/errorHandlers');
-
+//const { catchErrors } = require('../handlers/errorHandlers');
 const roomController = require('../controllers/roomController');
 
 router.get('/', (req, res) => {
@@ -9,15 +8,13 @@ router.get('/', (req, res) => {
 });
 
 //room routes
-router.get('/room/new', (req, res) => {
-  res.render("new");
-});
-
-router.post('/room/create', catchErrors(roomController.createRoom));
-
-router.get('/room/edit', (req, res) =>{
+router.get('/rooms', roomController.allRooms);
+router.get('/rooms/new', roomController.newRoom);
+router.post('/rooms/create', roomController.createRoom);
+router.get('/rooms/edit', (req, res) =>{
   res.render("edit");
-})
+});
+router.get('/rooms/:id', roomController.singleRoom);
 
 
 module.exports = router;

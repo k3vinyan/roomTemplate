@@ -2,9 +2,9 @@ extends layout
 
 block content
 
-  form.ui.form(action="/room/create" method="POST")
+  form.ui.form(action="/rooms/create" method="POST")
     .field
       label Room name
-      input(type="text" name="room-name" placeholder="Enter Room name")
+      input(type="text" name="name" placeholder="Enter Room name")
       button.ui.button(type="submit") Create Room
     

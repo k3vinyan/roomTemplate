@@ -4,7 +4,7 @@ mongoose.Promis = global.Promise;
 const Schema = mongoose.Schema;
 
 const RoomSchema = new Schema({
-  room_name: {
+  name: {
     type: String,
     required: 'Room name is required'
   },
