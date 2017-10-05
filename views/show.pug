@@ -15,5 +15,9 @@ block content
       
     
 
-  
+      form(action=`/search` method="POST")
+        .ui.icon.input
+          input(type="text" name="song" placeholder="search video....")
+          input(type="hidden" name='id' value=`${room._id}`)
+          input#search-button.i.icon(type="submit") 
   

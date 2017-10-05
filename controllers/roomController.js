@@ -10,8 +10,7 @@ exports.allRooms = async(req, res) => {
 }
 
 exports.singleRoom = async(req, res) => {
-  const room = await Room.findOne( {_id: req.params.id})
-  console.log(room.name);
+  const room = await Room.findOne( {_id: req.params.id});
   res.render('show', {room});
 }
 
