@@ -11,7 +11,9 @@ exports.allRooms = async(req, res) => {
 
 exports.singleRoom = async(req, res) => {
   const room = await Room.findOne( {_id: req.params.id});
-  res.render('show', {room});
+  const videos = res.videos || "";
+  console.log(req.videos)
+  res.render('show', {room, videos});
 }
 
 exports.newRoom = (req, res) => {

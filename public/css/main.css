@@ -1,6 +1,5 @@
 .card {
-  width: 500px;
-  height: 100px;
+  min-height: 100%;
   margin: 10px !important;
 }
 .border {

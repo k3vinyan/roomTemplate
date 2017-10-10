@@ -3,21 +3,18 @@ extends layout
 block content
   .single-room.ui.grid.centered.container.four
     .sixteen.wide.row
-    .ui.icon.input
-      input(type="text" placeholder="search video....")
-      i.search.icon
     h2.row= room.name
+    form#search(action=`/search` method="get")
+      .ui.icon.input
+        input(type="text" name="video" placeholder="search video....")
+        input(type="hidden" name='id' value=`${room._id}`)
+        input#search-button.i.icon(type="submit") 
   .ui.right.aligned.grid
-    .left.floated.right.aligned.seven.wide.column
-       ui.segment search song
-    .right.floated.left.aligned.six.wide.column
-      ui.segment playlist
+    .left.floated.right.aligned.eleven.wide.column.border
+      .ui.segment.border search song
+      column.ui.centered.grid#songs
       
+    .right.floated.left.aligned.five.wide.column.border
+      .ui.segment.border playlist
     
-
-      form(action=`/search` method="POST")
-        .ui.icon.input
-          input(type="text" name="song" placeholder="search video....")
-          input(type="hidden" name='id' value=`${room._id}`)
-          input#search-button.i.icon(type="submit") 
   
