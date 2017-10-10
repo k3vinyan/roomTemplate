@@ -1,0 +1,20 @@
+extends layout
+
+block content
+  .single-room.ui.grid.centered.container.four
+    .sixteen.wide.row
+    h2.row= room.name
+    form#search(action=`/search` method="get")
+      .ui.icon.input
+        input(type="text" name="video" placeholder="search video....")
+        input(type="hidden" name='id' value=`${room._id}`)
+        input#search-button.i.icon(type="submit") 
+  .ui.right.aligned.grid
+    .left.floated.right.aligned.eleven.wide.column.border
+      .ui.segment.border search song
+      column.ui.centered.grid#songs
+      
+    .right.floated.left.aligned.five.wide.column.border
+      .ui.segment.border playlist
+    
+  

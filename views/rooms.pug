@@ -1,0 +1,9 @@
+extends layout
+
+include mixins/_roomCard
+
+block content
+  .rooms 
+    .rooms.ui.centered.grid
+      each room in rooms
+        +roomCard(room)

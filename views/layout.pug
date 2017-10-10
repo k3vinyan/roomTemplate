@@ -1,0 +1,25 @@
+html
+  head
+    title This is my Room template
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    link(rel="stylesheet" type="text/css" href="/dist/semantic.css")
+    link(rel="stylesheet" type="text/css" href="/css/main.css")
+  body
+    .ui.four.item.stackable.menu
+      a.item(href="/rooms") LOBBY
+      a.item#createRoom(href="/rooms/new") Create Room
+      a.item Sign-in
+      a.item.right Sign-up  
+  
+  block content
+        
+
+
+
+
+
+
+script(src="/javascripts/main.js")
+script(src="https://code.jquery.com/jquery-3.2.1.min.js")
+script(src="/javascripts/youtubeAPI.js")
+script(src="https://apis.google.com/js/client.js?onload=googleApiClientReady")
