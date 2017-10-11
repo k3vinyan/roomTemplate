@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const Room = mongoose.model('Room');
+const slug = require('slugs');
 
 
 
@@ -12,7 +13,7 @@ exports.allRooms = async(req, res) => {
 exports.singleRoom = async(req, res) => {
   const room = await Room.findOne( {_id: req.params.id});
   const videos = res.videos || "";
-  console.log(req.videos)
+  console.log(room)
   res.render('show', {room, videos});
 }
 
@@ -21,8 +22,9 @@ exports.newRoom = (req, res) => {
 }
 
 exports.createRoom = async (req, res) => {
+
   const roomName = req.body['name'];
-  const room = new Room({'name': roomName});
+  const room = new Room({'name': roomName, slug: roomName.slug});
   await room.save();
   res.redirect('/rooms');
 }

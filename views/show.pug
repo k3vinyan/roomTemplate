@@ -11,10 +11,14 @@ block content
         input#search-button.i.icon(type="submit") 
   .ui.right.aligned.grid
     .left.floated.right.aligned.eleven.wide.column.border
-      .ui.segment.border search song
+      .ui.segment.centered.border search song
       column.ui.centered.grid#songs
       
     .right.floated.left.aligned.five.wide.column.border
-      .ui.segment.border playlist
+      .ui.segment.centered.border playlist
+        .ui#playlist
+          ul
+            each video in room.videos
+              li= video.name
     
   

@@ -2,6 +2,9 @@
   min-height: 100%;
   margin: 10px !important;
 }
+.header {
+  max-height: 57px !important;
+}
 .border {
   border-style: solid;
   border-color: black;
