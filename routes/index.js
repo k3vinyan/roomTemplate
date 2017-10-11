@@ -19,16 +19,6 @@ router.post('/rooms/:id', (req, res)=> {
 });
 
 //playlist routes
-router.post('/rooms/:roomId/:videoId', async (req, res) => {
-  const videoName = req.body['videoName'];
-  const videoId = req.body['videoId'];
-  const roomId = req.body['roomId'];
-  await Room.findOne({ _id: roomId}).then(function(record){
-    record.videos.push({name: videoName, videoId});
-    record.save().then(function(){
-      res.send(videoName)
-    })
-  });
-})
+router.post('/rooms/:roomId/:videoId', roomController.addVideoToRoom)
 
 module.exports = router;

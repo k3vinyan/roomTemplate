@@ -1,15 +1,15 @@
 const mongoose = require('mongoose');
-mongoose.Promis = global.Promise;
 const slug = require('slugs');
-
-
+mongoose.Promise = global.Promise;
 const Schema = mongoose.Schema;
 
-const Videos = new Schema({
-  name:  String,
-  videoId:  String
+//Playlist Schema for videos
+const Playlist = new Schema({
+    name:  String,
+    videoYTId:  String
 })
 
+//Room Schema
 const RoomSchema = new Schema({
   name: {
     type: String,
@@ -20,7 +20,7 @@ const RoomSchema = new Schema({
     type: String,
     trim: true
   },
-  videos: [Videos],
+  videos: [Playlist],
   date: Date
 });
 
@@ -39,7 +39,5 @@ RoomSchema.pre('save', async function(next) {
   next();
   // TODO make more resiliant so slugs are unique
 });
-
-
 
 module.exports = mongoose.model('Room', RoomSchema);

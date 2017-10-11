@@ -1,10 +1,10 @@
-const youtubeLink = "https://www.youtube.com/watch?v="
-//request youtube API
+
+
+//youtubeAPI Request
 youtubeAPIRequest = (method, type, part, maxResults, query) => {
-const youtubeKey = "AIzaSyCe0L76JiEKzBGrrw1ByQHJKLLMD_e3MHg";
-const BASE_URL = "https://www.googleapis.com/youtube/v3/search?";
-
-
+  const youtubeLink = "https://www.youtube.com/watch?v="
+  const youtubeKey = "AIzaSyCe0L76JiEKzBGrrw1ByQHJKLLMD_e3MHg";
+  const BASE_URL = "https://www.googleapis.com/youtube/v3/search?";
 
   let response = {
     BASE_URL: BASE_URL,
@@ -15,7 +15,7 @@ const BASE_URL = "https://www.googleapis.com/youtube/v3/search?";
     maxResults,
     query,
     order: 'relevance'
-  }
+}
   let getUrl = function(res){
     console.log(`${res.BASE_URL}${res.type}?part=${res.part}&q=$${res.query}&maxResults=${res.maxResults}&order=${res.order}&key=${res.youtubeKey}`);
     return `${res.BASE_URL}${res.type}?part=${res.part}&q=$${res.query}&maxResults=${res.maxResults}&order=${res.order}&key=${res.youtubeKey}`
@@ -23,8 +23,7 @@ const BASE_URL = "https://www.googleapis.com/youtube/v3/search?";
   getUrl(response);
 }
 
-console.log(youtubeAPIRequest("GET", 'search', 'snippet', 1, 'query'));
-
+//add Videos(cards) to the DOM
 const addCard = (video)=>{
   $('#songs').append(
     `<div class='ui card'>
@@ -38,6 +37,8 @@ const addCard = (video)=>{
     </div>
     `)
 }
+
+//ajax call to YOUTUBE API to search for videos
 $('#search-button').click(function(event){
   event.preventDefault();
   const formData = $('#search').serializeArray();;
@@ -62,6 +63,7 @@ $('#search-button').click(function(event){
   });
 })
 
+//function to add songs to playlist
 const addSongs = (song)=> {
   $('#playlist').append(
     `<div class='ui card'>
@@ -70,25 +72,29 @@ const addSongs = (song)=> {
   `)
 }
 
-document.getElementById("songs").addEventListener("click", function(e){
-  e.preventDefault();
-  const videoName = e.path[2].children[2].innerText;
-  const urlArray = window.location.href.split("/");
-  const roomId = urlArray[urlArray.length - 1];
-  const videoId = e.target.id;
-  $.ajax({
-    method: 'POST',
-    url: `/rooms/${roomId}/${videoId}`,
-    data: {
-      roomId,
-      videoName,
-      videoId
-    },
-    success: function(data){
-      console.log("Success: " + data)
-      addSongs(data)
-    }, error: function(data){
-      console.log("error: " + data)
-    }
+//ajax call to add video to playlist
+const el = document.getElementById("songs");
+if(el){
+  el.addEventListener("click", function(e){
+    e.preventDefault();
+    const videoName = e.path[2].children[2].innerText;
+    const urlArray = window.location.href.split("/");
+    const roomId = urlArray[urlArray.length - 1];
+    const videoId = e.target.id;
+    $.ajax({
+      method: 'POST',
+      url: `/rooms/${roomId}/${videoId}`,
+      data: {
+        roomId,
+        videoName,
+        videoId
+      },
+      success: function(data){
+        console.log("Success: " + data)
+        addSongs(data)
+      }, error: function(data){
+        console.log("error: " + data)
+      }
+    })
   })
-})
+}
