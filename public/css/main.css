@@ -9,3 +9,9 @@
   border-style: solid;
   border-color: black;
 }
+.top {
+  vertical-align: text-top;
+}
+.float-left {
+  float: left;
+}

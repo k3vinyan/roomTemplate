@@ -11,7 +11,6 @@ exports.allRooms = async(req, res) => {
 //find one room
 exports.singleRoom = async(req, res) => {
   const room = await Room.findOne( {_id: req.params.id});
-  console.log(room)
   res.render('show', {room});
 }
 
@@ -32,12 +31,22 @@ exports.addVideoToRoom = async (req, res) => {
   const videoName = req.body['videoName'];
   const videoYTId = req.body['videoId'];
   const roomId = req.body['roomId'];
+  const counter = req.body['counter'];
+  const thumbnail = req.body['thumbnail'];
+
+  const video = {
+    videoName,
+    videoYTId,
+    roomId,
+    thumbnail
+  }
+
   await Room.findOne({ _id: roomId})
     .then(function(record){
-      record.videos.push({name: videoName, videoYTId });
+      record.videos.push({name: videoName, videoYTId, thumbnail });
       record.save()
         .then(function(){
-          res.send(videoName)
+          res.send(video)
         })
   })
 }

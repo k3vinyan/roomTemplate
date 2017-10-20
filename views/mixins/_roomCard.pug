@@ -1,5 +1,5 @@
 mixin roomCard(room = {})
-  a.ui.card.column(href=`/rooms/${room.slug}/${room._id}`)
+  a.ui.card.column(href=`/rooms/${room.slug}/${room._id}` data-counter=`${rooms.indexOf(room)}`)
     .content
       .header= room.name
       .description description.....

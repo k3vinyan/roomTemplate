@@ -4,9 +4,3 @@ if(addCardEl != null){
     window.location.replace("/add");
   });
 }
-
-
-// const createRoom = document.getElementById('createRoom');
-// createRoom.addEventListener('click', ()=>{
-//
-// })

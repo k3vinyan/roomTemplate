@@ -16,9 +16,12 @@ block content
       
     .right.floated.left.aligned.five.wide.column.border
       .ui.segment.centered.border playlist
-        .ui#playlist
-          ul
+        .ui#playlist 
+          .ui.list
             each video in room.videos
-              li= video.name
-    
-  
+              .item
+                .right.floated.content
+                  .ui.button.deleteButton delete
+                img.ui.avatar.image(src=`${video.thumbnail}`)
+                .content
+                  .description= video.name  

@@ -6,7 +6,8 @@ const Schema = mongoose.Schema;
 //Playlist Schema for videos
 const Playlist = new Schema({
     name:  String,
-    videoYTId:  String
+    videoYTId:  String,
+    thumbnail: String
 })
 
 //Room Schema
