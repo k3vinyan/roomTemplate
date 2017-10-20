@@ -2,6 +2,10 @@ const mongoose = require('mongoose');
 const Room = mongoose.model('Room');
 const slug = require('slugs');
 
+//helpers
+
+
+
 //find all rooms
 exports.allRooms = async(req, res) => {
   const rooms = await Room.find();
@@ -33,7 +37,7 @@ exports.addVideoToRoom = async (req, res) => {
   const roomId = req.body['roomId'];
   const counter = req.body['counter'];
   const thumbnail = req.body['thumbnail'];
-
+  console.log(videoYTId)
   const video = {
     videoName,
     videoYTId,
@@ -48,5 +52,12 @@ exports.addVideoToRoom = async (req, res) => {
         .then(function(){
           res.send(video)
         })
+  })
+}
+
+exports.deleteVideo = async(req, res) => {
+  const room = await Room.findByIdAndUpdate({_id: req.params.roomId}, {$pull: {videos: {videoYTId: req.params.videoId}}})
+  .then(function(room){
+    res.send("cat")
   })
 }

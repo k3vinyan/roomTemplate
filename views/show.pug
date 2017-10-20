@@ -21,7 +21,7 @@ block content
             each video in room.videos
               .item
                 .right.floated.content
-                  .ui.button.deleteButton delete
+                  .ui.button.deleteButton(data-video-id=`${video.videoYTId}`) delete
                 img.ui.avatar.image(src=`${video.thumbnail}`)
                 .content
                   .description= video.name  

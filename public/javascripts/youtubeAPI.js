@@ -19,7 +19,6 @@ youtubeAPIRequest = (method, type, part, maxResults, query) => {
     order: 'relevance'
 }
   let getUrl = function(res){
-    console.log(`${res.BASE_URL}${res.type}?part=${res.part}&q=$${res.query}&maxResults=${res.maxResults}&order=${res.order}&key=${res.youtubeKey}`);
     return `${res.BASE_URL}${res.type}?part=${res.part}&q=$${res.query}&maxResults=${res.maxResults}&order=${res.order}&key=${res.youtubeKey}`
   }
   getUrl(response);
@@ -69,11 +68,11 @@ $('#search-button').click(function(event){
 //function to add songs to playlist
 const addSongs = (song)=> {
   //song videoName, videoYTId, roomId, thumbnail
-  console.log(song)
   const thumbnails = ajaxVideosCall;
   $('#playlist').append(
-    `<div class='ui card'>
+    `<div class='ui card item'>
       <div class='description'><img class='top float-left' src=${song.thumbnail}></img>${song.videoName}</div>
+      <div class='ui button deleteButton' data-video-id='${song.videoYTId}'>delete</div>
     </div>
   `)
 }
@@ -94,7 +93,6 @@ if(el){
     const videoId = e.target.id;
     const counter = e.target.dataset.counter;
     const thumbnail = ajaxVideosCall[counter].snippet.thumbnails.default.url;
-    //console.log(ajaxVideosCall)
     $.ajax({
       method: 'POST',
       url: `/rooms/${roomId}/${videoId}`,
@@ -106,10 +104,9 @@ if(el){
         thumbnail
       },
       success: function(data){
-        console.log("Success: " + data)
         addSongs(data)
       }, error: function(data){
-        console.log("error: " + data)
+        throw err;
       }
     })
   })

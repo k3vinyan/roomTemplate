@@ -20,5 +20,6 @@ router.post('/rooms/:id', (req, res)=> {
 
 //playlist routes
 router.post('/rooms/:roomId/:videoId', roomController.addVideoToRoom)
+router.delete('/rooms/:roomId/:videoId', roomController.deleteVideo)
 
 module.exports = router;
